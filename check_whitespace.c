@@ -66,7 +66,7 @@ int is_clean(char const *str) {
  * aren't completelty made up of spaces, we can clear the
  * memory of those that are only spaces
  */
-  if (strcmp(cleaned, "")) {
+  if (strlen(cleaned) > 0) {
 	  free((char*)cleaned);
   }
   return result == 0;
