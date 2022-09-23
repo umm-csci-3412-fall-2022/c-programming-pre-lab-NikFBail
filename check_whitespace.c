@@ -61,5 +61,13 @@ int is_clean(char const *str) {
   // greater than the second.
   int result = strcmp(str, cleaned);
 
+/* Frees the char pointer to cleaned if the string was made
+ * up of only spaces. Since we only care about strings that
+ * aren't completelty made up of spaces, we can clear the
+ * memory of those that are only spaces
+ */
+  if (strcmp(cleaned, "")) {
+	  free((char*)cleaned);
+  }
   return result == 0;
 }
