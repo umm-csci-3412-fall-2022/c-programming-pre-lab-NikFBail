@@ -2,24 +2,39 @@
 
 #include "check_whitespace.h"
 
+/* Need to free result in every test that uses
+ * strip and doesn't have strip return "", as
+ * those cases are covered in the freeing of
+ * char pointer cleaned in the
+ * check_whitespace.c file
+ * */
 TEST(strip, EmptyString) {
-    ASSERT_STREQ("", strip(""));
+    const char* result = strip("");
+    ASSERT_STREQ("", result);
 }
 
 TEST(strip, NoWhitespace) {
-    ASSERT_STREQ("frog", strip("frog"));
+    const char* result = strip("frog");
+    ASSERT_STREQ("frog", result);
+    free((char*) result);
 }
 
 TEST(strip, WhitespaceOnFront) {
-    ASSERT_STREQ("frog", strip("   frog"));
+    const char* result = strip("   frog");
+    ASSERT_STREQ("frog", result);
+    free((char*) result);
 }
 
 TEST(strip, WhitespaceOnBack) {
-    ASSERT_STREQ("frog", strip("frog  "));
+    const char* result = strip("frog  ");
+    ASSERT_STREQ("frog", result);
+    free((char*) result);
 }
 
 TEST(strip, WhitespaceOnBothEnds) {
-    ASSERT_STREQ("frog", strip("  frog     "));
+    const char* result = strip("  frog     ");
+    ASSERT_STREQ("frog", result);
+    free((char*) result);
 }
 
 TEST(is_clean, EmptyString) {
